@@ -3,7 +3,7 @@
 
 drop database if exists insurance;
 create database insurance;
-use insurance; 
+use insurance;
 select * from insurance;
 
 # Queries
