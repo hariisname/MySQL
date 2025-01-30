@@ -1,6 +1,24 @@
+-- Dataset Info
+-- age: The age of the individual (numerical data).
+-- sex: The gender of the individual (categorical data: 'male' or 'female').
+-- bmi: The Body Mass Index of the individual (numerical data).
+-- children: The number of children or dependents the individual has (numerical data, representing a count).
+-- smoker: Indicates whether the individual is a smoker or not (categorical data: 'yes' or 'no').
+-- region: The geographic region where the individual lives (categorical data).
+-- charges: The medical costs billed by health insurance for the individual (numerical data).
+
 create database insurance;
 use insurance;
 select * from insur;
+
+-- droping Duplicates
+DELETE FROM insur
+WHERE (age, sex, bmi, children, smoker, region, charges) IN (
+    SELECT age, sex, bmi, children, smoker, region, charges
+    FROM insur
+    GROUP BY age, sex, bmi, children, smoker, region, charges
+    HAVING COUNT(*) > 1
+);
 
 -- the total number of individuals
 SELECT COUNT(*) AS TotalIndividuals
